@@ -1,4 +1,3 @@
-// Do not change code below this line
 const questions = [
   {
     question: "What is the capital of France?",
@@ -29,9 +28,9 @@ const questions = [
 
 let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(questions.length).fill(null);
 
-.function renderQuestions() {
+function renderQuestions() {
   const questionsElement = document.getElementById("questions");
-  questionsElement.innerHTML = ''; // Clear previous content
+  questionsElement.innerHTML = ''; 
   for (let i = 0; i < questions.length; i++) {
     const question = questions[i];
     const questionElement = document.createElement("div");
@@ -74,20 +73,17 @@ function calculateScore() {
 
 function displayScore() {
   const score = calculateScore();
-  localStorage.setItem("score", score); 
+  localStorage.setItem("score", score); // Save the score to localStorage
   const scoreElement = document.getElementById("score");
   scoreElement.textContent = `Your score is ${score} out of ${questions.length}.`;
 }
 
-// Handle the submit button click
 document.getElementById("submit").addEventListener("click", function () {
   displayScore();
 });
 
-// Render the questions when the page loads
 renderQuestions();
 
-// Display the stored score from localStorage (if available)
 const storedScore = localStorage.getItem("score");
 if (storedScore) {
   document.getElementById("score").textContent = `Your score is ${storedScore} out of ${questions.length}.`;
