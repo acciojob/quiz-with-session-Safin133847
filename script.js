@@ -27,11 +27,9 @@ const questions = [
   },
 ];
 
-// Initialize user answers
 let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(questions.length).fill(null);
 
-// Display the quiz questions and choices
-function renderQuestions() {
+.function renderQuestions() {
   const questionsElement = document.getElementById("questions");
   questionsElement.innerHTML = ''; // Clear previous content
   for (let i = 0; i < questions.length; i++) {
@@ -51,7 +49,6 @@ function renderQuestions() {
         choiceElement.setAttribute("checked", true);
       }
 
-      // Event listener to save user progress when a choice is selected
       choiceElement.addEventListener("change", () => {
         userAnswers[i] = choice;
         sessionStorage.setItem("progress", JSON.stringify(userAnswers));
@@ -65,7 +62,6 @@ function renderQuestions() {
   }
 }
 
-// Calculate the score
 function calculateScore() {
   let score = 0;
   for (let i = 0; i < questions.length; i++) {
@@ -76,10 +72,9 @@ function calculateScore() {
   return score;
 }
 
-// Display the score
 function displayScore() {
   const score = calculateScore();
-  localStorage.setItem("score", score); // Save the score to localStorage
+  localStorage.setItem("score", score); 
   const scoreElement = document.getElementById("score");
   scoreElement.textContent = `Your score is ${score} out of ${questions.length}.`;
 }
